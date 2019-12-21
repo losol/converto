@@ -2,7 +2,7 @@
   "name": "converto",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Application for converting html to pdf.",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -24,7 +24,7 @@
     "sqlite3": "latest"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Ole Kristian Losvik"
   },
   "strapi": {
     "uuid": "a532594a-3b69-48ce-97ca-5facf71c2ad5"
@@ -33,5 +33,5 @@
     "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "GPL"
 }
