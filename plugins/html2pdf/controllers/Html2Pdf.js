@@ -1,6 +1,6 @@
 'use strict';
 
-const service = require('../services/Converto');
+const service = require('../services/Html2Pdf');
 
 function getOptions(ctx) {
   let scale = undefined;

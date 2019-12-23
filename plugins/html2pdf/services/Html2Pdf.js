@@ -3,12 +3,6 @@
 const puppeteer = require('puppeteer');
 
 /**
- * Converto.js service
- *
- * @description: A set of functions similar to controller's actions to avoid code duplication.
- */
-
-/**
  * @param {!function} pageInit
  * @param {!{format?: string, scale?: number}} options
  * @returns {Promise<*>}

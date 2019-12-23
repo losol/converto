@@ -3,7 +3,7 @@
     {
       "method": "GET",
       "path": "/api/v1/convert/html2pdf",
-      "handler": "Converto.url2pdf",
+      "handler": "Html2Pdf.url2pdf",
       "config": {
         "policies": [],
         "prefix": false
@@ -12,7 +12,7 @@
     {
       "method": "POST",
       "path": "/api/v1/convert/html2pdf",
-      "handler": "Converto.html2pdf",
+      "handler": "Html2Pdf.html2pdf",
       "config": {
         "policies": [],
         "prefix": false

@@ -1,11 +1,11 @@
 {
-  "name": "strapi-plugin-converto",
+  "name": "strapi-plugin-html2pdf",
   "version": "0.0.0",
   "description": "This is the description of the plugin.",
   "strapi": {
-    "name": "converto",
+    "name": "html2pdf",
     "icon": "plug",
-    "description": "Description of converto plugin."
+    "description": "Description of html2pdf plugin."
   },
   "dependencies": {
     "puppeteer": "^2.0.0"
