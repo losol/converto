@@ -27,10 +27,10 @@ module.exports = {
   },
 
   html2pdf: async (ctx) => {
-    if (!ctx.request.rawBody) {
-      ctx.throw(400, 'Empty POST body');
+    if (!ctx.request.body) {
+      ctx.throw(400, 'Request should be made with Content-Type: text/plain header');
     }
     ctx.set('Content-Type', 'application/pdf');
-    ctx.body = await service.html2pdf(ctx.request.rawBody, getOptions(ctx));
+    ctx.body = await service.html2pdf(ctx.request.body, getOptions(ctx));
   }
 };
