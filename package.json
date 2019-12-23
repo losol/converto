@@ -7,8 +7,7 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi",
-    "postinstall": "cd plugins/html2pdf && npm install"
+    "strapi": "strapi"
   },
   "devDependencies": {},
   "dependencies": {
