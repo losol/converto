@@ -22,7 +22,7 @@ function getOptions(ctx) {
 
 module.exports = {
 
-  html2pdf: async ctx => {
+  convert: async ctx => {
     // Check that either url or html is posted
     if (!ctx.request.body.url && !ctx.request.body.html) {
       ctx.throw(400, "Either url or html is required");

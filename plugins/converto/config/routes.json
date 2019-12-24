@@ -3,7 +3,7 @@
     {
       "method": "POST",
       "path": "/convert/html/to/pdf",
-      "handler": "Html2Pdf.html2pdf",
+      "handler": "html2pdf.convert",
       "config": {
         "policies": [],
         "prefix": false
