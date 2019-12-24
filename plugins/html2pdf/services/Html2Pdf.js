@@ -8,7 +8,13 @@ const puppeteer = require('puppeteer');
  * @returns {Promise<*>}
  */
 async function generatePdf(pageInit, options) {
-  const browser = await puppeteer.launch();
+
+  // Check if NoSandbox flag is set. For running this on Heroku, the 
+  // PUPPETEER_NOSANDBOX environment variable must be set to "true"
+  const browser =
+    process.env.PUPPETEER_NOSANDBOX === "true"
+      ? await puppeteer.launch({ args: ["--no-sandbox"] })
+      : await puppeteer.launch();
   const page = await browser.newPage();
   await pageInit(page);
   const buffer = await page.pdf({
@@ -17,6 +23,7 @@ async function generatePdf(pageInit, options) {
   });
   await browser.close();
   return buffer;
+  
 }
 
 module.exports = {
