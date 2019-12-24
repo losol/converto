@@ -29,7 +29,7 @@ Both methods require `Authorization: Bearer <JWT token>` header. To obtain an `j
 ```
 
 ## Get started
-1. Clone the repo
+1. Clone the repo, and run `npm install` in the project folder.
 2. Run Strapi with Converto with the command `npx strapi develop`
 3. Login on `localhost:1337/admin`, and create a new user. For example with email `asdf@asdf.com`, and password `asdfasdf`.
 4. Go to roles and permissions, and add Converto - Html2Pdf - convert to the allow conversions for this user. 
