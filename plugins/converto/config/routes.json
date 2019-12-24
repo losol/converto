@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "method": "POST",
+      "path": "/convert/html/to/pdf",
+      "handler": "html2pdf.convert",
+      "config": {
+        "policies": [],
+        "prefix": false
+      }
+    }
+  ]
+}

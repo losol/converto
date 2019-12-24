@@ -8,7 +8,7 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "postinstall": "cd plugins/html2pdf && npm install"
+    "postinstall": "cd plugins/converto && npm install"
   },
   "devDependencies": {},
   "dependencies": {

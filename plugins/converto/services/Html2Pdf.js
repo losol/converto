@@ -23,7 +23,6 @@ async function generatePdf(pageInit, options) {
   });
   await browser.close();
   return buffer;
-  
 }
 
 module.exports = {
