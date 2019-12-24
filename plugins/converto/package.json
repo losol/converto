@@ -1,7 +1,7 @@
 {
-  "name": "strapi-plugin-html2pdf",
-  "version": "0.0.0",
-  "description": "This is the description of the plugin.",
+  "name": "strapi-plugin-converto",
+  "version": "0.1.0",
+  "description": "The plugin converts .",
   "strapi": {
     "name": "html2pdf",
     "icon": "plug",
