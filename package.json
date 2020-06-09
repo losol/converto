@@ -1,7 +1,7 @@
 {
   "name": "converto",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Application for converting html to pdf.",
   "scripts": {
     "develop": "strapi develop",
@@ -12,18 +12,18 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "knex": "<0.20.0",
-    "pg": "^7.15.1",
-    "sqlite3": "4.1.1",
-    "strapi": "3.0.0-beta.18.3",
-    "strapi-admin": "3.0.0-beta.18.3",
-    "strapi-connector-bookshelf": "3.0.0-beta.18.3",
-    "strapi-plugin-content-manager": "3.0.0-beta.18.3",
-    "strapi-plugin-content-type-builder": "3.0.0-beta.18.3",
-    "strapi-plugin-email": "3.0.0-beta.18.3",
-    "strapi-plugin-upload": "3.0.0-beta.18.3",
-    "strapi-plugin-users-permissions": "3.0.0-beta.18.3",
-    "strapi-utils": "3.0.0-beta.18.3"
+    "knex": "^0.21.1",
+    "pg": "^8.2.1",
+    "sqlite3": "4.2.0",
+    "strapi": "3.0.1",
+    "strapi-admin": "3.0.1",
+    "strapi-connector-bookshelf": "3.0.1",
+    "strapi-plugin-content-manager": "3.0.1",
+    "strapi-plugin-content-type-builder": "3.0.1",
+    "strapi-plugin-email": "3.0.1",
+    "strapi-plugin-upload": "3.0.1",
+    "strapi-plugin-users-permissions": "3.0.1",
+    "strapi-utils": "3.0.1"
   },
   "author": {
     "name": "Ole Kristian Losvik"
