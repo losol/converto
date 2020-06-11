@@ -16,7 +16,7 @@ on:
       - master
 
 env:
-  IMAGE_NAME: losolio/converto
+  IMAGE_NAME: converto
 
 jobs:
   # Run tests.
