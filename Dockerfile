@@ -1,8 +1,8 @@
-FROM node:10.13-alpine
+FROM node:12
 ENV NODE_ENV production
 WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
+COPY ["package.json", "package-lock.json", "./"]
+RUN npm ci
 COPY . .
 EXPOSE 1337
-CMD npm start
+CMD npx strapi start
