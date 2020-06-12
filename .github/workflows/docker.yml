@@ -2,17 +2,45 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
+    tags:
+    - v*
   pull_request:
-    branches: [ master ]
+    branches: [master] 
+
+env:
+  ORGANIZATION_NAME: losolio
+  IMAGE_NAME: converto
 
 jobs:
-
-  build:
-
+  test:
+    name: Run tests
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag converto:$(date +%s)
+      - uses: actions/checkout@v2
+
+      - name: Run tests
+        run: |
+          if [ -f docker-compose.test.yml ]; then
+            docker-compose --file docker-compose.test.yml build
+            docker-compose --file docker-compose.test.yml run sut
+          else
+            docker build . --file Dockerfile
+          fi
+
+  push:
+    name: Build image and push to Docker Hub.
+    needs: test
+
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: $ORGANIZATION_NAME/$IMAGE_NAME
+          tag_with_ref: true
+          tags: latest
