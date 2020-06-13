@@ -22,6 +22,9 @@ jobs:
 
       - name: Run tests
         run: |
+          echo ${{ date "+%Y-%m-%d-%H:%M" }}
+          echo ${{ GITHUB_RUN_NUMBER }}
+          echo ${{ date "+%Y-%m-%d" + "." + GITHUB_RUN_NUMBER }}
           if [ -f docker-compose.test.yml ]; then
             docker-compose --file docker-compose.test.yml build
             docker-compose --file docker-compose.test.yml run sut
