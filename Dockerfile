@@ -18,6 +18,7 @@ WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json", "./"]
 RUN npm ci
 COPY . .
+RUN npx strapi build
 
 # Run everything after as non-privileged user.
 USER pptruser
