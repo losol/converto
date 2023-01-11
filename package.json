@@ -11,7 +11,7 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "knex": "0.21.19",
+    "knex": "2.4.0",
     "pg": "^8.6.0",
     "puppeteer": "^9.1.1",
     "sqlite3": "5.0.2",
