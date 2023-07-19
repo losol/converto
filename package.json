@@ -1,40 +1,55 @@
 {
   "name": "converto",
-  "private": true,
-  "version": "0.3.0",
-  "description": "PDF converter",
-  "scripts": {
-    "develop": "strapi develop",
-    "start": "strapi start",
-    "build": "strapi build",
-    "strapi": "strapi"
+  "version": "0.4.0",
+  "description": "Strapi TS plugin to convert URLs or HTML to PDF",
+  "strapi": {
+    "name": "converto",
+    "description": "Converts URLs or HTML to PDF",
+    "kind": "plugin"
   },
-  "devDependencies": {},
   "dependencies": {
-    "knex": "0.21.19",
-    "pg": "^8.6.0",
-    "puppeteer": "^9.1.1",
-    "sqlite3": "5.0.2",
-    "strapi": "3.6.1",
-    "strapi-admin": "3.6.1",
-    "strapi-connector-bookshelf": "3.6.1",
-    "strapi-plugin-content-manager": "3.6.1",
-    "strapi-plugin-content-type-builder": "3.6.1",
-    "strapi-plugin-email": "3.6.1",
-    "strapi-plugin-i18n": "3.6.1",
-    "strapi-plugin-upload": "3.6.1",
-    "strapi-plugin-users-permissions": "3.6.1",
-    "strapi-utils": "3.6.1"
+    "@strapi/design-system": "^1.6.3",
+    "@strapi/helper-plugin": "^4.6.0",
+    "@strapi/icons": "^1.6.3",
+    "prop-types": "^15.7.2",
+    "puppeteer": "^20.8.3"
+  },
+  "devDependencies": {
+    "@strapi/typescript-utils": "^4.6.0",
+    "@types/react": "^17.0.53",
+    "@types/react-dom": "^18.0.28",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.26",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.3.4",
+    "styled-components": "^5.3.6",
+    "typescript": "5.0.4"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0",
+    "react-router-dom": "^5.3.4",
+    "styled-components": "^5.3.6"
   },
   "author": {
     "name": "Ole Kristian Losvik"
   },
-  "strapi": {
-    "uuid": "9cc16c8d-6a61-45ab-854a-51d973dba5b8"
-  },
+  "maintainers": [
+    {
+      "name": "Ole Kristian Losvik"
+    },
+    {
+      "name": "M.A. van't Kruis (hellomeinte.com)"
+    }
+  ],
   "engines": {
-    "node": ">=10.16.0 <=14.x.x",
-    "npm": "^6.0.0"
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "develop": "tsc -p tsconfig.server.json -w",
+    "build": "tsc -p tsconfig.server.json"
   },
   "license": "MIT"
 }

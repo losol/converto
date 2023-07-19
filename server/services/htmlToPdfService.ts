@@ -1,32 +1,32 @@
-'use strict';
+import { Strapi } from "@strapi/strapi";
 
-const puppeteer = require('puppeteer');
+const puppeteer = require("puppeteer");
 
 /**
  * @param {!function} pageInit
  * @param {!{format?: string, scale?: number}} options
  * @returns {Promise<*>}
  */
-async function generatePdf(pageInit, options) {
-
-  // Check if NoSandbox flag is set. For running this on Heroku, the 
+const generatePdf = async (pageInit, options) => {
+  // Check if NoSandbox flag is set. For running this on Heroku, the
   // PUPPETEER_NOSANDBOX environment variable must be set to "true"
-  const browser =
-    process.env.PUPPETEER_NOSANDBOX === "true"
-      ? await puppeteer.launch({ args: ["--no-sandbox"] })
-      : await puppeteer.launch();
+  const puppeteerArgs =
+    process.env.PUPPETEER_NOSANDBOX === "true" ? ["--no-sandbox"] : [];
+  const browser = await puppeteer.launch({
+    headless: "new",
+    args: puppeteerArgs,
+  });
   const page = await browser.newPage();
   await pageInit(page);
   const buffer = await page.pdf({
     format: options.format,
-    scale: options.scale
+    scale: options.scale,
   });
   await browser.close();
   return buffer;
-}
+};
 
-module.exports = {
-
+export default ({ strapi }: { strapi: Strapi }) => ({
   /**
    * @param {string} url URL to render.
    * @param {!{format?: string, scale?: number}=} options
@@ -34,7 +34,7 @@ module.exports = {
    */
   url2pdf: async (url, options = {}) => {
     return await generatePdf(async (page) => {
-      await page.goto(url, {waitUntil: 'networkidle2'});
+      await page.goto(url, { waitUntil: "networkidle2" });
     }, options);
   },
 
@@ -45,7 +45,7 @@ module.exports = {
    */
   html2pdf: async (html, options = {}) => {
     return await generatePdf(async (page) => {
-      await page.setContent(html, {waitUntil: 'networkidle2'});
+      await page.setContent(html, { waitUntil: "networkidle2" });
     }, options);
-  }
-};
+  },
+});
