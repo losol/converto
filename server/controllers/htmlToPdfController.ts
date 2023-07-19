@@ -1,9 +1,6 @@
-"use strict";
+import { Strapi } from "@strapi/strapi";
 
-const service = require("../services/Html2Pdf");
-const { parseMultipartData } = require("strapi-utils");
-
-function getOptions(ctx) {
+const getOptions = (ctx) => {
   let scale;
   if (ctx.request.body.scale) {
     scale = parseFloat(ctx.request.body.scale);
@@ -16,14 +13,13 @@ function getOptions(ctx) {
   }
   return {
     format: ctx.request.body.format || "A4",
-    scale: scale || 1
+    scale: scale || 1,
   };
-}
+};
 
-module.exports = {
-
-  convert: async ctx => {
-    // Check that either url or html is posted
+export default ({ strapi }: { strapi: Strapi }) => ({
+  async convert(ctx) {
+    //ctx.body = strapi.plugin("converto").service("htmlToPdfService").convert();
     if (!ctx.request.body.url && !ctx.request.body.html) {
       ctx.throw(400, "Either url or html is required");
     }
@@ -43,13 +39,12 @@ module.exports = {
 
     // Set Content type to output
     ctx.set("Content-Type", "application/pdf");
-
+    const service = strapi.plugin("converto").service("htmlToPdfService");
     // Return pdf based on request type
     if (ctx.request.body.html) {
       ctx.body = await service.html2pdf(ctx.request.body.html, getOptions(ctx));
-    }
-    else {
+    } else {
       ctx.body = await service.url2pdf(ctx.request.body.url, getOptions(ctx));
     }
-  }
-};
+  },
+});
