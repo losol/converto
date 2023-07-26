@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "strict": true
+    "strict": true,
+    "esModuleInterop":true,
   },
-
   "include": ["custom.d.ts"],
 
   "exclude": [

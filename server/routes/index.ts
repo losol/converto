@@ -5,15 +5,3 @@
 export default {
   "content-api": require("./content-api"),
 };
-/*
-export default [
-  {
-    method: "POST",
-    path: "/",
-    handler: "htmlToPdfController.convert",
-    config: {
-      policies: [],
-      auth: false,
-    },
-  },
-];*/
