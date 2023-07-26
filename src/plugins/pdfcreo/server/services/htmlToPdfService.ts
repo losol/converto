@@ -11,10 +11,13 @@ const generatePdf = async (
   format: PaperFormat,
   scale: number
 ): Promise<Buffer> => {
-  // Check if NoSandbox flag is set. For running this on Heroku, the
-  // PUPPETEER_NOSANDBOX environment variable must be set to "true"
-  const puppeteerArgs =
+  // Check if no-sandbox or disable-setuid-sandbox is set.
+  var puppeteerArgs =
     process.env.PUPPETEER_NOSANDBOX === "true" ? ["--no-sandbox"] : [];
+
+  if (process.env.PUPPETEER_DISABLE_SETUID_SANDBOX === "true")
+    puppeteerArgs.push("--disable-setuid-sandbox");
+
   const browser: Browser = await puppeteer.launch({
     headless: "new",
     args: puppeteerArgs,
