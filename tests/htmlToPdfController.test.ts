@@ -1,6 +1,6 @@
-import controller from "../server/controllers/htmlToPdfController";
+import controller from "../src/plugins/pdfcreo/server/controllers/htmlToPdfController";
 import { Buffer } from "node:buffer";
-import errorMessages from "../server/controllers/errorMessages";
+import errorMessages from "../src/plugins/pdfcreo/server/controllers/errorMessages";
 import { getStrapiContext, getStrapiMockInstance } from "./utils";
 
 describe("HTML to PDF controller - proper functioning with proper input", () => {

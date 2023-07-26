@@ -1,18 +1,18 @@
 {
+  "extends": "@strapi/typescript-utils/tsconfigs/server",
   "compilerOptions": {
-    "target": "ESNext",
-    "strict": true,
-    "esModuleInterop":true,
+    "outDir": "dist",
+    "rootDir": "."
   },
-  "include": ["custom.d.ts"],
-
+  "include": ["./", "./**/*.ts", "./**/*.js", "src/**/*.json"],
   "exclude": [
     "node_modules/",
+    "build/",
     "dist/",
-
-    // Do not include server files in the server compilation
-    "server/",
-    // Do not include test files
-    "**/*.test.ts"
+    ".cache/",
+    ".tmp/",
+    "src/admin/",
+    "**/*.test.*",
+    "src/plugins/**"
   ]
 }

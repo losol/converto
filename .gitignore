@@ -1,6 +1,7 @@
 dist/
 db/
 .vscode
+.env.local
 
 ############################
 # OS X
