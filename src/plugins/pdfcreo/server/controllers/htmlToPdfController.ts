@@ -25,7 +25,7 @@ export default ({ strapi }: { strapi: Strapi }) => ({
     // Set Content type to output
     ctx.set("Content-Type", "application/pdf");
     const service = strapi
-      .plugin("converto")
+      .plugin("pdfcreo")
       .service("htmlToPdfService") as HTMLToPDFService;
     // Return pdf based on request type
     if (html) {
