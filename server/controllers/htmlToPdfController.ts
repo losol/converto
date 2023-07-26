@@ -6,7 +6,8 @@ import errorMessages from "./errorMessages";
 export default ({ strapi }: { strapi: Strapi }) => ({
   async convert(ctx: any) {
     const result = schema.safeParse(ctx.request.body);
-    if (!result.success) {
+    //has to be a strict check, see https://github.com/colinhacks/zod/issues/1190#issuecomment-1171607138
+    if (result.success === false) {
       const err: ZodError = result.error;
       let message = err.errors[0].message;
       if (err.errors[0]?.path?.length) {

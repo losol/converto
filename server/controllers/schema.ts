@@ -20,7 +20,6 @@ export default z
     html: z.string().optional(),
     url: z.string().optional(),
     scale: z.number().default(1),
-
     format: paperFormats.default("A4"),
   })
   .superRefine(({ html, url, scale }, ctx) => {
