@@ -1,4 +1,5 @@
-FROM node:18.17-bookworm-slim as build
+FROM node:18.17-bookworm-slim
+EXPOSE 1337
 ENV NODE_ENV production
 
 # Install Chrome, to have all dependencies for Puppeteer
@@ -13,18 +14,15 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy files to the app directory
-COPY --chown=node:node . /home/node/app
+RUN mkdir /app && mkdir /app/.cache && chown -R node:node /app
+COPY . /app
+WORKDIR /app
 
 # Install dependencies
-WORKDIR /home/node/app
-RUN yarn install --production
-
-# Build the app
-RUN yarn build 
+RUN yarn install && yarn build && chown -R node:node /app
 
 # Run time!
+ENV PUPPETEER_DOWNLOAD_PATH /app/.cache/puppeteer
 USER node
-WORKDIR /home/node/app
 RUN node node_modules/puppeteer/install.js
-EXPOSE 1337
 CMD yarn start

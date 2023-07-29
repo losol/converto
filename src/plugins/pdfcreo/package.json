@@ -11,7 +11,8 @@
     "@strapi/design-system": "^1.6.3",
     "@strapi/helper-plugin": "^4.6.0",
     "@strapi/icons": "^1.6.3",
-    "puppeteer": "^20.8.3"
+    "puppeteer": "^20.8.3",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@strapi/typescript-utils": "^4.6.0",
@@ -28,8 +29,7 @@
     "styled-components": "^5.3.6",
     "tsx": "^3.12.7",
     "typescript": "5.0.4",
-    "ts-jest": "^29.1.1",
-    "zod": "^3.21.4"
+    "ts-jest": "^29.1.1"
   },
   "peerDependencies": {
     "@strapi/strapi": "^4.0.0",
