@@ -12,6 +12,7 @@
     ".cache/",
     ".tmp/",
     "src/admin/",
+    "tests/",
     "**/*.test.*",
     "src/plugins/**"
   ]

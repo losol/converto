@@ -20,6 +20,7 @@
     // Do not include admin files in the server compilation
     "admin/",
     // Do not include test files
+    "**/tests",
     "**/*.test.ts"
   ]
 }
