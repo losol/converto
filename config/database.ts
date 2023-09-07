@@ -33,12 +33,7 @@ export default ({ env }) => {
     sqlite: {
       connection: {
         client: "pg",
-        filename: path.join(
-          __dirname,
-          "..",
-          "..",
-          env("DATABASE_FILENAME", ".tmp/data.db")
-        ),
+        filename: env("DATABASE_FILENAME", ".tmp/data.db"),
       },
       useNullAsDefault: true,
     },
