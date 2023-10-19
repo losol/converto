@@ -2,6 +2,7 @@ dist/
 db/
 .vscode
 .env.local
+types/generated
 
 ############################
 # OS X

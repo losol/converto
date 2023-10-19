@@ -3,16 +3,7 @@
   "version": "0.5.0",
   "private": true,
   "description": "Strapi CMS with plugin to generate pdf from html",
-  "dependencies": {
-    "@strapi/plugin-i18n": "^4.13.7",
-    "@strapi/plugin-users-permissions": "^4.13.7",
-    "@strapi/strapi": "^4.13.7",
-    "better-sqlite3": "8.6.0"
-  },
-  "devDependencies": {
-    "typescript": "5.2.2",
-    "jest": "^29.7.0"
-  },
+  "license": "MIT",
   "author": {
     "name": "Ole Kristian Losvik"
   },
@@ -24,22 +15,35 @@
       "name": "M.A. van't Kruis (hellomeinte.com)"
     }
   ],
+  "workspaces": [
+    "./src/plugins/pdfcreo"
+  ],
   "scripts": {
+    "prebuild": "cd ./src/plugins/pdfcreo && yarn build",
+    "build": "strapi build",
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build",
-    "strapi": "strapi",
-    "prebuild": "cd ./src/plugins/pdfcreo && yarn build"
+    "strapi": "strapi"
   },
-  "strapi": {
-    "uuid": "d334fbb4-b5b5-47aa-a864-30549623666f"
+  "dependencies": {
+    "@strapi/plugin-i18n": "^4.14.5",
+    "@strapi/plugin-users-permissions": "^4.14.5",
+    "@strapi/strapi": "^4.14.5",
+    "better-sqlite3": "9.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.3.4",
+    "styled-components": "^5.3.6"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "typescript": "5.2.2"
   },
   "engines": {
     "node": ">=14.19.1 <=18.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT",
-  "workspaces": [
-    "./src/plugins/pdfcreo"
-  ]
+  "strapi": {
+    "uuid": "d334fbb4-b5b5-47aa-a864-30549623666f"
+  }
 }

@@ -29,13 +29,79 @@ Optional fields:
 
 Both methods require `Authorization: Bearer <JWT token>` header. To obtain an `jwt token` you create an API token through the admin panel and pass it directly as a bearer token.
 
+## Configuration
+
+Env variables are used to configure the application. You can either set them in a `.env` file, or pass them as environment variables.
+
+- **HOST**: The IP address where your application will be running. `0.0.0.0` means it will be accessible from any IP address.
+  - **Default**: `0.0.0.0`
+- **PORT**: The port number for the application.
+
+  - **Default**: `1337`
+
+- **APP_KEYS**: A comma-separated list of encryption keys used for securing your application data.
+- **API_TOKEN_SALT**: The salt used for hashing API tokens. Helps in strengthening the security.
+
+- **ADMIN_JWT_SECRET**: Secret key used for generating and verifying the JWT tokens for admin users.
+
+- **TRANSFER_TOKEN_SALT**: Salt used for generating transfer tokens. Adds an additional layer of security.
+
+---
+
+### Database Configuration
+
+- **DATABASE_CLIENT**: The database engine to be used. Can be `sqlite` or `postgres`.
+  - **Default**: `sqlite`
+- **DATABASE_HOST**: IP address of your database server.
+
+  - **Default**: `127.0.0.1`
+
+- **DATABASE_PORT**: Port on which your database server is running.
+
+  - **Default**: `5432`
+
+- **DATABASE_NAME**: Name of the database to be used.
+
+- **DATABASE_USERNAME**: Username to connect to the database.
+
+- **DATABASE_PASSWORD**: Password for the database user.
+
+- **DATABASE_SSL**: Whether to use SSL for database connection. Should be set to `true` for secure connections.
+
+---
+
+### JWT Configuration
+
+- **JWT_SECRET**: Secret key for generating and verifying JWT tokens.
+
+---
+
+### Strapi Configuration
+
+- **STRAPI_LOG_LEVEL**: Level of logging for Strapi. Can be `debug`, `info`, `warn`, etc.
+  - **Default**: `debug`
+
+---
+
+### Puppeteer Configuration
+
+- **PUPPETEER_CACHE_DIR**: Directory path where Puppeteer should store its cache.
+
+  - **Default**: `/app/.cache/puppeteer`
+
+- **PUPPETEER_NOSANDBOX**: Flag to run Puppeteer without a sandbox. Generally set to `true` for running in certain environments like Docker.
+  - **Default**: `true`
+
+---
+
 ## Get started
 
-1. Clone the repo, and run `yarn install` in the project folder.
-2. Run Strapi with Converto with the command `yarn develop`
-3. Login on `localhost:1337/admin`, and create a new user.
-4. Go to `Settings`, and `Api tokens`. Get an API token with permission on pdfcreo.
-5. Add the token to the header as a bearer token, and send your request to `localhost:1337/api/pdfcreo``
+1. Clone the repo, and run `npm install` in the project folder.
+2. Ensure that the environment variables are set. The required one are `APP_KEYS`, `JWT_SECRET`, `API_TOKEN_SALT` and `ADMIN_JWT_SECRET`.
+3. Run Strapi with Converto with the command `npm run develop`
+4. Login on `localhost:1337/admin`, and create a new user.
+5. Go to `Settings`, and `Api tokens`. Get an API token with permission on pdfcreo.
+6. Add the token to the header as a bearer token, and send your request to `localhost:1337/api/pdfcreo``
 
 Find more [documentation on the API, with an Postman Collection](https://documenter.getpostman.com/view/863421/SWLZeUzS?version=latest).
 
