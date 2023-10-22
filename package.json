@@ -7,7 +7,7 @@
     "@strapi/plugin-i18n": "^4.13.7",
     "@strapi/plugin-users-permissions": "^4.13.7",
     "@strapi/strapi": "^4.13.7",
-    "better-sqlite3": "8.6.0"
+    "better-sqlite3": "8.7.0"
   },
   "devDependencies": {
     "typescript": "5.2.2",
