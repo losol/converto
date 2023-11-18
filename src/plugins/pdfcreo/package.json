@@ -12,7 +12,7 @@
     "@strapi/helper-plugin": "^4.6.0",
     "@strapi/icons": "^1.6.3",
     "puppeteer": "^20.8.3",
-    "zod": "^3.21.4"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@strapi/typescript-utils": "^4.6.0",
