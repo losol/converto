@@ -1,36 +1,32 @@
 # Dockerfile for ConvertoAPI (HTML to PDF conversion microservice)
 #
-# Build from monorepo root:
-#   docker build -f apps/convertoapi/Dockerfile -t converto:latest .
+# Build from the repo root:
+#   docker build -t converto:latest .
 #
 ##################
 # Stage 1: Build #
 ##################
 FROM mcr.microsoft.com/playwright:v1.60.0-noble AS builder
 
-# Get the needed package files
 WORKDIR /app
-COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
-COPY apps/convertoapi/package.json ./apps/convertoapi/package.json
-COPY libs/eslint-config/package.json ./libs/eslint-config/package.json
-COPY libs/typescript-config/package.json ./libs/typescript-config/package.json
 
-# Enable pnpm and install all dependencies (including devDependencies for build)
+# Enable the pinned pnpm version
 RUN corepack enable && \
-    COREPACK_ENABLE_STRICT=0 corepack prepare pnpm@10.28.2 --activate && \
-    pnpm install --ignore-scripts
+    COREPACK_ENABLE_STRICT=0 corepack prepare pnpm@11.4.0 --activate
 
-# Copy source files after install
-COPY apps/convertoapi/public ./apps/convertoapi/public
-COPY libs/typescript-config ./libs/typescript-config
+# Install all dependencies (incl. devDependencies for the build) using the
+# lockfile only, so this layer is cached until dependencies change.
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN pnpm install --frozen-lockfile --ignore-scripts
 
 # Build the app
-COPY apps/convertoapi ./apps/convertoapi
-WORKDIR /app/apps/convertoapi
+COPY tsconfig.json ./
+COPY public ./public
+COPY src ./src
 RUN pnpm run build
 
-# Deploy with production dependencies only
-RUN pnpm --filter @eventuras/convertoapi deploy --prod --legacy /app/deploy
+# Drop devDependencies, leaving only production deps in node_modules.
+RUN pnpm prune --prod --ignore-scripts
 
 
 ##################################
@@ -45,10 +41,10 @@ RUN apt-get update -qq && \
 
 # Get generated files from the previous stage (read-only for non-root user)
 WORKDIR /app
-COPY --chmod=555 --from=builder /app/deploy/node_modules /app/node_modules
-COPY --chmod=444 --from=builder /app/deploy/package.json /app/package.json
-COPY --chmod=555 --from=builder /app/apps/convertoapi/dist /app/dist
-COPY --chmod=555 --from=builder /app/apps/convertoapi/public /app/public
+COPY --chmod=555 --from=builder /app/node_modules /app/node_modules
+COPY --chmod=444 --from=builder /app/package.json /app/package.json
+COPY --chmod=555 --from=builder /app/dist /app/dist
+COPY --chmod=555 --from=builder /app/public /app/public
 
 # Switch to non-root user
 USER pwuser
