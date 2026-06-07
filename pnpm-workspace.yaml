@@ -1,0 +1,6 @@
+# Not a workspace — this file only carries pnpm settings that pnpm 11+
+# no longer reads from the "pnpm" field in package.json.
+# esbuild (pulled in by vitest / @vitest/coverage-v8) needs its postinstall
+# to fetch the platform binary.
+allowBuilds:
+  esbuild: true
