@@ -85,6 +85,47 @@ describe('Converto API integration', () => {
     expect(res.statusCode).toBe(401);
   });
 
+  // The route schema requires `authorization` to match `^Basic [A-Za-z0-9+/=]+$`,
+  // so missing/non-Basic headers are rejected at validation (400) before the
+  // handler. Only a syntactically valid Basic header reaches the 401 checks.
+  it('POST /token rejects a missing Authorization header (schema validation)', async () => {
+    const res = await app.inject({
+      method: 'POST',
+      url: '/token',
+      headers: { 'content-type': 'application/json' },
+      payload: { grant_type: 'client_credentials' },
+    });
+    expect(res.statusCode).toBe(400);
+  });
+
+  it('POST /token rejects a non-Basic Authorization header (schema validation)', async () => {
+    const res = await app.inject({
+      method: 'POST',
+      url: '/token',
+      headers: {
+        authorization: 'Bearer some-token',
+        'content-type': 'application/json',
+      },
+      payload: { grant_type: 'client_credentials' },
+    });
+    expect(res.statusCode).toBe(400);
+  });
+
+  it('POST /token rejects Basic credentials without a colon separator', async () => {
+    const malformed = 'Basic ' + Buffer.from('noseparator').toString('base64');
+    const res = await app.inject({
+      method: 'POST',
+      url: '/token',
+      headers: {
+        authorization: malformed,
+        'content-type': 'application/json',
+      },
+      payload: { grant_type: 'client_credentials' },
+    });
+    expect(res.statusCode).toBe(401);
+    expect(JSON.parse(res.payload).error).toBe('invalid_client');
+  });
+
   it('POST /v1/pdf rejects unauthenticated requests', async () => {
     const res = await app.inject({
       method: 'POST',
