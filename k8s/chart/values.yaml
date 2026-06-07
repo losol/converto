@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   registry: docker.io
   repository: losolio/converto
-  tag: ""           # Set by CI/CD
+  tag: '' # Set by CI/CD
   pullPolicy: IfNotPresent
 
 service:
@@ -16,13 +16,13 @@ service:
 # Resource limits – Playwright/Chromium is memory-intensive.
 resources:
   requests:
-    memory: "256Mi"
-    cpu: "100m"
-    ephemeral-storage: "512Mi"
+    memory: '256Mi'
+    cpu: '100m'
+    ephemeral-storage: '512Mi'
   limits:
-    memory: "1Gi"
-    cpu: "1000m"
-    ephemeral-storage: "2Gi"
+    memory: '1Gi'
+    cpu: '1000m'
+    ephemeral-storage: '2Gi'
 
 # Health check configuration
 healthCheck:
@@ -70,10 +70,10 @@ securityContext:
 
 # Non-sensitive environment variables
 env:
-  HOST: "0.0.0.0"
-  PORT: "3100"
-  BASE_URL: "http://converto"
-  PLAYWRIGHT_NOSANDBOX: "true"
+  HOST: '0.0.0.0'
+  PORT: '3100'
+  BASE_URL: 'http://converto'
+  PLAYWRIGHT_NOSANDBOX: 'true'
 
 # Pod annotations
 podAnnotations: {}

@@ -95,8 +95,6 @@ describe('validateUrl', () => {
   });
 
   it('rejects unresolvable hostname', async () => {
-    expect(await validateUrl('http://does-not-exist.invalid')).toBe(
-      'Could not resolve hostname'
-    );
+    expect(await validateUrl('http://does-not-exist.invalid')).toBe('Could not resolve hostname');
   });
 });
