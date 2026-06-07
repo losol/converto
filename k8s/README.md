@@ -13,11 +13,11 @@ External access (HTTPRoute, TLS) is configured separately.
 
 The app requires a Kubernetes secret named `converto-secrets` with:
 
-| Key | Description |
-| --- | --- |
-| `JWT_SECRET` | Secret for signing JWT tokens |
-| `CLIENT_ID` | OAuth client ID |
-| `CLIENT_SECRET` | OAuth client secret |
+| Key             | Description                   |
+| --------------- | ----------------------------- |
+| `JWT_SECRET`    | Secret for signing JWT tokens |
+| `CLIENT_ID`     | OAuth client ID               |
+| `CLIENT_SECRET` | OAuth client secret           |
 
 ```bash
 kubectl create namespace converto
@@ -46,8 +46,8 @@ API consumers in other namespaces use the fully qualified service name:
 ```yaml
 config:
   converto:
-    pdfEndpointUrl: "http://converto.converto/v1/pdf"
-    tokenEndpointUrl: "http://converto.converto/token"
+    pdfEndpointUrl: 'http://converto.converto/v1/pdf'
+    tokenEndpointUrl: 'http://converto.converto/token'
 ```
 
 The API also needs matching credentials (`Converto__ClientId`, `Converto__ClientSecret`).
