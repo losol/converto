@@ -1,0 +1,7 @@
+dist/
+node_modules/
+coverage/
+pnpm-lock.yaml
+
+# Helm chart templates use Go templating that is not valid YAML
+k8s/chart/templates/
