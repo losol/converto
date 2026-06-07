@@ -1,28 +1,57 @@
-FROM node:18.17-bookworm-slim
-EXPOSE 1337
-ENV NODE_ENV production
+# Dockerfile for ConvertoAPI (HTML to PDF conversion microservice)
+#
+# Build from monorepo root:
+#   docker build -f apps/convertoapi/Dockerfile -t converto:latest .
+#
+##################
+# Stage 1: Build #
+##################
+FROM mcr.microsoft.com/playwright:v1.60.0-noble AS builder
 
-# Install Chrome, to have all dependencies for Puppeteer
-# https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#running-puppeteer-in-docker
-RUN apt-get update \
-  && apt-get install -y wget gnupg \
-  && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-  && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-  && apt-get update \
-  && apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 \
-  --no-install-recommends \
-  && rm -rf /var/lib/apt/lists/*
-
-# Copy files to the app directory
-RUN mkdir /app && mkdir /app/.cache && chown -R node:node /app
-COPY . /app
+# Get the needed package files
 WORKDIR /app
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY apps/convertoapi/package.json ./apps/convertoapi/package.json
+COPY libs/eslint-config/package.json ./libs/eslint-config/package.json
+COPY libs/typescript-config/package.json ./libs/typescript-config/package.json
 
-# Install dependencies
-RUN yarn install && yarn build && chown -R node:node /app
+# Enable pnpm and install all dependencies (including devDependencies for build)
+RUN corepack enable && \
+    COREPACK_ENABLE_STRICT=0 corepack prepare pnpm@10.28.2 --activate && \
+    pnpm install --ignore-scripts
 
-# Run time!
-ENV PUPPETEER_DOWNLOAD_PATH /app/.cache/puppeteer
-USER node
-RUN node node_modules/puppeteer/install.mjs
-CMD yarn start
+# Copy source files after install
+COPY apps/convertoapi/public ./apps/convertoapi/public
+COPY libs/typescript-config ./libs/typescript-config
+
+# Build the app
+COPY apps/convertoapi ./apps/convertoapi
+WORKDIR /app/apps/convertoapi
+RUN pnpm run build
+
+# Deploy with production dependencies only
+RUN pnpm --filter @eventuras/convertoapi deploy --prod --legacy /app/deploy
+
+
+##################################
+# Stage 2: Run from a fresh base #
+##################################
+FROM mcr.microsoft.com/playwright:v1.60.0-noble
+
+# Install tini for proper signal handling (SIGTERM in k8s)
+RUN apt-get update -qq && \
+    apt-get install -y --no-install-recommends tini && \
+    rm -rf /var/lib/apt/lists/*
+
+# Get generated files from the previous stage (read-only for non-root user)
+WORKDIR /app
+COPY --chmod=555 --from=builder /app/deploy/node_modules /app/node_modules
+COPY --chmod=444 --from=builder /app/deploy/package.json /app/package.json
+COPY --chmod=555 --from=builder /app/apps/convertoapi/dist /app/dist
+COPY --chmod=555 --from=builder /app/apps/convertoapi/public /app/public
+
+# Switch to non-root user
+USER pwuser
+
+ENTRYPOINT ["tini", "--"]
+CMD ["node", "dist/app.js"]

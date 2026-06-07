@@ -1,19 +1,9 @@
 {
-  "extends": "@strapi/typescript-utils/tsconfigs/server",
+  "extends": "@eventuras/typescript-config/node.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "."
+    "rootDir": "src",
+    "outDir": "./dist"
   },
-  "include": ["./", "./**/*.ts", "./**/*.js", "src/**/*.json"],
-  "exclude": [
-    "node_modules/",
-    "build/",
-    "dist/",
-    ".cache/",
-    ".tmp/",
-    "src/admin/",
-    "tests/",
-    "**/*.test.*",
-    "src/plugins/**"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
