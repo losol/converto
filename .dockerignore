@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+.git
+.github
+.env
+.env.local
+*.log
+k8s
+**/*.test.ts
+README.md
+CHANGELOG.md
