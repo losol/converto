@@ -39,12 +39,28 @@ GitHub Actions:
   - `main` → `canary` + `main-<sha>` (linux/amd64 + arm64)
   - `v*` tag → `<version>` + `latest`
   - Pull requests build only (no push)
+- **Release** (`.github/workflows/release.yml`) — Changesets-based releases
+  (see below).
 
 Publishing requires two repository secrets: `DOCKERHUB_USERNAME` and
 `DOCKERHUB_TOKEN`.
 
 Dependency updates are managed by Dependabot (`.github/dependabot.yml`) for
 npm, GitHub Actions, and the Docker base image.
+
+### Releases
+
+Versioning and changelog are managed with [Changesets](https://github.com/changesets/changesets):
+
+1. Include a changeset with any release-worthy change: `pnpm changeset`
+   (pick the bump type, write a summary) and commit the file in `.changeset/`.
+2. When changesets land on `main`, the Release workflow opens/updates a
+   **"Version Packages"** PR that bumps the version and updates `CHANGELOG.md`.
+3. Merging that PR tags `v<version>`, creates a GitHub Release, and triggers
+   the Docker workflow to publish `losolio/converto:<version>` + `latest`.
+
+The package is `private` and is never published to npm — Changesets only drives
+the version, changelog, and release tag.
 
 ## Run local
 
