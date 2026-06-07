@@ -15,8 +15,10 @@ const authPlugin: FastifyPluginAsync = async (fastify: FastifyInstance) => {
       await request.jwtVerify();
     } catch (err) {
       fastify.log.error(err, 'JWT verification failed');
-      reply.status(401).send({ error: 'Authentication failed' });
-      throw new Error('Authentication failed', { cause: err });
+      // Returning the reply short-circuits the preHandler chain with a 401.
+      // Don't also throw: that would re-enter Fastify's error handler on an
+      // already-sent reply (noisy logs, risk of overriding the 401).
+      return reply.status(401).send({ error: 'Authentication failed' });
     }
   });
 
