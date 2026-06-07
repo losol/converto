@@ -40,7 +40,7 @@ The code is feature-sliced under `src/features/<feature>/`. Each feature exposes
 a `register*` function from its `index.ts`, and `buildApp()` in
 [`src/app.ts`](../src/app.ts) composes them — registration order matters:
 
-```
+```text
 ratelimit → openapi → auth → pdf → health → homepage
 ```
 
@@ -83,16 +83,13 @@ GitHub Actions:
 
 - **CI** (`.github/workflows/ci.yml`) — on every push/PR to `main`: lint, format
   check, typecheck, unit tests, build, and the integration suite.
-- **Docker** (`.github/workflows/docker.yml`) — builds the image and, on pushes
-  to `main` and `v*` tags, publishes to Docker Hub (`losolio/converto`):
-  - `main` → `canary` + `main-<sha>` (linux/amd64 + arm64)
-  - `v*` tag → `<version>` + `latest`
-  - pull requests build only (no push)
+- **Docker** (`.github/workflows/docker.yml`) — builds and publishes the
+  container image. See [docker.md](./docker.md) for build instructions and the
+  image tag scheme.
 - **Release** (`.github/workflows/release.yml`) — Changesets-based releases.
 
-Publishing requires two repository secrets: `DOCKERHUB_USERNAME` and
-`DOCKERHUB_TOKEN`. Dependency updates are managed by Dependabot for npm, GitHub
-Actions, and the Docker base image.
+Dependency updates are managed by Dependabot for npm, GitHub Actions, and the
+Docker base image.
 
 ## Releases
 

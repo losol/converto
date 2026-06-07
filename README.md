@@ -8,6 +8,7 @@ A Fastify service that converts HTML or a URL into a PDF using Playwright/Chromi
   testing, CI/CD, and the release flow.
 - **[Server configuration](docs/server-configuration.md)** — environment
   variables, rate limiting, Chromium sandbox, and deployment.
+- **[Docker](docs/docker.md)** — building, running, and the published image tags.
 
 ## Quick start
 
@@ -18,21 +19,7 @@ cp .env.template .env   # then fill in the values
 pnpm dev
 ```
 
-## Run local
-
-To run converto api locally with docker, you can use the following command:
-
-```bash
-docker run -d --name converto_api \
-  -e HOST=0.0.0.0 \
-  -e BASE_URL=http://localhost \
-  -e PORT=3100 \
-  -e JWT_SECRET=jwt_secret \
-  -e CLIENT_ID=client_id \
-  -e CLIENT_SECRET=client_secret \
-  -p 3100:3100 \
-  losolio/converto
-```
+To run it with Docker instead, see [docs/docker.md](docs/docker.md).
 
 ## Usage
 
