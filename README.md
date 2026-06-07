@@ -7,7 +7,44 @@
 
 Copy `.env.template` to `.env` and fill in the values.
 
-Then you may run the app with `npm run dev`.
+Then you may run the app with `pnpm dev`.
+
+## Development
+
+This repo uses [pnpm](https://pnpm.io/) (pinned via `packageManager`) and Node 24.
+
+| Script                  | Description                                    |
+| ----------------------- | ---------------------------------------------- |
+| `pnpm dev`              | Run the app with tsx (watch-free)              |
+| `pnpm build`            | Type-check and emit to `dist/`                 |
+| `pnpm start`            | Run the built app from `dist/`                 |
+| `pnpm lint`             | ESLint (`--max-warnings 0`)                    |
+| `pnpm format`           | Format with Prettier                           |
+| `pnpm typecheck`        | `tsc --noEmit`                                 |
+| `pnpm test`             | Unit tests (excludes the integration suite)    |
+| `pnpm test:integration` | Integration tests (needs a Playwright browser) |
+| `pnpm test:coverage`    | Unit tests with coverage                       |
+
+The integration tests boot the Fastify app and generate a real PDF, so they
+need a browser: `pnpm exec playwright install --with-deps chromium`.
+
+## CI/CD
+
+GitHub Actions:
+
+- **CI** (`.github/workflows/ci.yml`) — on every push/PR to `main`: lint,
+  format check, typecheck, unit tests, build, and the integration suite.
+- **Docker** (`.github/workflows/docker.yml`) — builds the image and, on
+  pushes to `main` and `v*` tags, publishes to Docker Hub (`losolio/converto`).
+  - `main` → `canary` + `main-<sha>` (linux/amd64 + arm64)
+  - `v*` tag → `<version>` + `latest`
+  - Pull requests build only (no push)
+
+Publishing requires two repository secrets: `DOCKERHUB_USERNAME` and
+`DOCKERHUB_TOKEN`.
+
+Dependency updates are managed by Dependabot (`.github/dependabot.yml`) for
+npm, GitHub Actions, and the Docker base image.
 
 ## Run local
 
@@ -22,7 +59,7 @@ docker run -d --name converto_api \
   -e CLIENT_ID=client_id \
   -e CLIENT_SECRET=client_secret \
   -p 3100:3100 \
-  losolio/converto-api
+  losolio/converto
 ```
 
 ## Usage
