@@ -37,6 +37,16 @@
     "changeset": "changeset",
     "version": "changeset version"
   },
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": true,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "printWidth": 100,
+    "tabWidth": 2,
+    "useTabs": false,
+    "endOfLine": "auto"
+  },
   "dependencies": {
     "@fastify/jwt": "^10.0.0",
     "@fastify/rate-limit": "^10.3.0",
