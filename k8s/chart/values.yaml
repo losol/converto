@@ -43,6 +43,40 @@ podDisruptionBudget:
   enabled: false
   minAvailable: 1
 
+# Network isolation (disabled by default – requires a CNI that enforces NetworkPolicy,
+# and the allowed traffic depends on cluster topology). Enable + fill the rules in a
+# prod overlay. When enabled, the policy is default-deny in both directions except:
+#   - DNS egress (UDP/TCP 53), always allowed so the app can resolve names.
+#   - The ingress/egress rules listed below.
+# Note: this service fetches arbitrary external URLs for PDF rendering, so egress to the
+# public internet is part of its normal function – scope it deliberately (egress proxy,
+# allowed CIDRs) rather than leaving it wide open.
+networkPolicy:
+  enabled: false
+  # Sources allowed to reach the service. Empty list = no ingress permitted when enabled.
+  ingress: []
+  #   - from:
+  #       - namespaceSelector:
+  #           matchLabels:
+  #             kubernetes.io/metadata.name: eventuras
+  #         podSelector:
+  #           matchLabels:
+  #             app.kubernetes.io/name: eventuras-api
+  #     ports:
+  #       - protocol: TCP
+  #         port: 3100
+  # Egress destinations beyond DNS (which is always allowed). Empty list = DNS only.
+  egress: []
+  #   - to:
+  #       - ipBlock:
+  #           cidr: 0.0.0.0/0
+  #           except:
+  #             - 10.0.0.0/8
+  #             - 169.254.0.0/16
+  #     ports:
+  #       - protocol: TCP
+  #         port: 443
+
 topologySpreadConstraints: []
 #   - maxSkew: 1
 #     topologyKey: kubernetes.io/hostname
