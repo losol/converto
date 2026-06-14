@@ -32,6 +32,7 @@
     "format:check": "prettier --check .",
     "test": "vitest run --exclude src/integration.test.ts",
     "test:integration": "vitest run src/integration.test.ts",
+    "test:e2e": "bash tests/e2e/smoke-docker.sh",
     "test:coverage": "vitest run --coverage --exclude src/integration.test.ts",
     "test:watch": "vitest --exclude src/integration.test.ts",
     "changeset": "changeset",
