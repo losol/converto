@@ -21,8 +21,8 @@ importers:
         specifier: ^9.7.0
         version: 9.7.0
       '@scalar/fastify-api-reference':
-        specifier: ^1.52.1
-        version: 1.58.0
+        specifier: ^1.59.3
+        version: 1.59.3
       dotenv:
         specifier: ^17.4.2
         version: 17.4.2
@@ -444,8 +444,8 @@ packages:
   '@manypkg/get-packages@1.1.3':
     resolution: {integrity: sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==}
 
-  '@napi-rs/wasm-runtime@1.1.4':
-    resolution: {integrity: sha512-3NQNNgA1YSlJb/kMH1ildASP9HW7/7kYnRI2szWJaofaS1hWmbGI4H+d3+22aGzXXN9IJ+n+GiFVcGipJP18ow==}
+  '@napi-rs/wasm-runtime@1.1.5':
+    resolution: {integrity: sha512-AWPoBRJ9tsnVhor4sjO7rkni+7p+2IAEFj6cx06UgP10jkQHqay/36uRV/bFkgrh18D9vb4cr8Q0Pthskgzy+Q==}
     peerDependencies:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
@@ -566,24 +566,24 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@scalar/client-side-rendering@0.1.13':
-    resolution: {integrity: sha512-p8V4HgEWjaCpqsnhclg1pTfjE9JA0AWRr0ocBQHexoHo+pqnSs1d83Mv9rjH7R0FZJrlCSandZZeY3DMX2gYXQ==}
+  '@scalar/client-side-rendering@0.2.3':
+    resolution: {integrity: sha512-AazrKedEZ/JR/ze9UGrWCqpRp9T88QlgBZWVOYC8QAMISz5CGUDZKqpayz2iwGzzZAtKF0VW/Y0sbL7ERTvn6w==}
     engines: {node: '>=22'}
 
-  '@scalar/fastify-api-reference@1.58.0':
-    resolution: {integrity: sha512-1/WRYcKxfF9b7oZ5vUHdbfkrUbnoxM7sXZO+Rj98S9XGCSg8ayjnEusjRDI947dZvY7fiGtv5fEapTzo68EUCQ==}
+  '@scalar/fastify-api-reference@1.59.3':
+    resolution: {integrity: sha512-Lz6NVJYK8/w+tGZqq+dqBRTcSFTr2yggU/MwOdwKkKkpYNjm+kHICnPyztE7eS420aLJrG+0fcG433B8EQ0b8w==}
     engines: {node: '>=22'}
 
-  '@scalar/helpers@0.8.1':
-    resolution: {integrity: sha512-yuiuBCadP5bjAnIv23QvifVN/NaMi9xBF6b8Wdk4QOzwzLPJmp699MAdf33J0A5i2qKcvnu32iz/VkEJmQRe5g==}
+  '@scalar/helpers@0.8.2':
+    resolution: {integrity: sha512-qNbqUjSB3S4Gr4A0oANcm5G1Ip+EqBxICYKhe9YzmnaBpbmW6shxqpiivApTvvuDf+uIhR3uMwWyVQbYcGLsxA==}
     engines: {node: '>=22'}
 
-  '@scalar/json-magic@0.12.15':
-    resolution: {integrity: sha512-ZYgdYZ0jSZXQeyhG2lJ20FjzvKsaDRXk4bPguF/Ytl2nGBh9a6RIIr9NvVy4zAD67a/ahm+xipXlfoR1KtB5fg==}
+  '@scalar/json-magic@0.12.16':
+    resolution: {integrity: sha512-w8cDbZhHCzmIblWx92IVWoAXsbI4Fz3m++jiBANTSO1hgphF6UqEPQiCt3wnMPaxaanjMQxjS/iBk1UGXR2EGA==}
     engines: {node: '>=22'}
 
-  '@scalar/openapi-parser@0.28.6':
-    resolution: {integrity: sha512-gCl4r+rpmO+CKfwmmwI+GJVFhuNut7e6beUcD/xazanH4epkLT7V9ZgMv9YKbUBE73fkrOv6NJympeEGiU8aUw==}
+  '@scalar/openapi-parser@0.28.7':
+    resolution: {integrity: sha512-E6beEdTsJxUStxOmY1knQvSNJq6LTiXOsRX2WTrfmU6d/kiATn6IKkAU0kXtAZkaYCGU4UCEmBFHCMmNKn0JLA==}
     engines: {node: '>=22'}
 
   '@scalar/openapi-types@0.9.1':
@@ -594,12 +594,12 @@ packages:
     resolution: {integrity: sha512-D5b0rGLLZgmkO9mdW2j/ND1KBlH1u3RCpr87HPxv9P9ZSr6PtM5iLqFOJq0ACiaHjY2mikCrxgDmnUEhTzRpHQ==}
     engines: {node: '>=22'}
 
-  '@scalar/schemas@0.3.3':
-    resolution: {integrity: sha512-qDcgFu6ta5Z90L9D2P6DFKzYesU+FW5+m55SGmdI4iRMRCwj5umHpec2Y2W/SJcCF6bbUZawMxuOH2Ja6rUNpQ==}
+  '@scalar/schemas@0.4.3':
+    resolution: {integrity: sha512-YZ/FcxM5ctZ65m07q5DOOUhuQA5SjZvnoyP6jCCfoiaQ/aVXTDF1vZ1+RMYhKqDwfV/QCW36k0H/38aG/8lNyA==}
     engines: {node: '>=22'}
 
-  '@scalar/types@0.12.3':
-    resolution: {integrity: sha512-7zaXafbgTFmsJ/9AwYeExUWzXoZNyKOL0SEVAUWRaOndcjxpFCtwzuPrc1elMEWdHopWbY1Qe5pWKbE2aqG2HA==}
+  '@scalar/types@0.13.3':
+    resolution: {integrity: sha512-+rtVPVC7UPDGaqvBZY8FjXI5cW2xJtJDVsOGuoevRUBkJb3feSiBkGIZxYy0JkJCl9wVUi/PqGEcut6Nb3RnJw==}
     engines: {node: '>=22'}
 
   '@scalar/validation@0.6.0':
@@ -2235,7 +2235,7 @@ snapshots:
       globby: 11.1.0
       read-yaml-file: 1.1.0
 
-  '@napi-rs/wasm-runtime@1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
+  '@napi-rs/wasm-runtime@1.1.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:
       '@emnapi/core': 1.10.0
       '@emnapi/runtime': 1.10.0
@@ -2298,7 +2298,7 @@ snapshots:
     dependencies:
       '@emnapi/core': 1.10.0
       '@emnapi/runtime': 1.10.0
-      '@napi-rs/wasm-runtime': 1.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      '@napi-rs/wasm-runtime': 1.1.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
     optional: true
 
   '@rolldown/binding-win32-arm64-msvc@1.0.3':
@@ -2309,32 +2309,32 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@scalar/client-side-rendering@0.1.13':
+  '@scalar/client-side-rendering@0.2.3':
     dependencies:
-      '@scalar/schemas': 0.3.3
-      '@scalar/types': 0.12.3
+      '@scalar/schemas': 0.4.3
+      '@scalar/types': 0.13.3
       '@scalar/validation': 0.6.0
 
-  '@scalar/fastify-api-reference@1.58.0':
+  '@scalar/fastify-api-reference@1.59.3':
     dependencies:
-      '@scalar/client-side-rendering': 0.1.13
-      '@scalar/openapi-parser': 0.28.6
+      '@scalar/client-side-rendering': 0.2.3
+      '@scalar/openapi-parser': 0.28.7
       '@scalar/openapi-types': 0.9.1
       fastify-plugin: 4.5.1
       github-slugger: 2.0.0
 
-  '@scalar/helpers@0.8.1': {}
+  '@scalar/helpers@0.8.2': {}
 
-  '@scalar/json-magic@0.12.15':
+  '@scalar/json-magic@0.12.16':
     dependencies:
-      '@scalar/helpers': 0.8.1
+      '@scalar/helpers': 0.8.2
       pathe: 2.0.3
       yaml: 2.9.0
 
-  '@scalar/openapi-parser@0.28.6':
+  '@scalar/openapi-parser@0.28.7':
     dependencies:
-      '@scalar/helpers': 0.8.1
-      '@scalar/json-magic': 0.12.15
+      '@scalar/helpers': 0.8.2
+      '@scalar/json-magic': 0.12.16
       '@scalar/openapi-types': 0.9.1
       '@scalar/openapi-upgrader': 0.2.9
       ajv: 8.20.0
@@ -2350,14 +2350,14 @@ snapshots:
     dependencies:
       '@scalar/openapi-types': 0.9.1
 
-  '@scalar/schemas@0.3.3':
+  '@scalar/schemas@0.4.3':
     dependencies:
-      '@scalar/helpers': 0.8.1
+      '@scalar/helpers': 0.8.2
       '@scalar/validation': 0.6.0
 
-  '@scalar/types@0.12.3':
+  '@scalar/types@0.13.3':
     dependencies:
-      '@scalar/helpers': 0.8.1
+      '@scalar/helpers': 0.8.2
       nanoid: 5.1.11
       type-fest: 5.7.0
       zod: 4.4.3
