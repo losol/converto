@@ -6,7 +6,7 @@
 ##################
 # Stage 1: Build #
 ##################
-FROM mcr.microsoft.com/playwright:v1.60.0-noble AS builder
+FROM mcr.microsoft.com/playwright:v1.61.1-noble AS builder
 
 WORKDIR /app
 
@@ -32,7 +32,7 @@ RUN pnpm prune --prod --ignore-scripts
 ##################################
 # Stage 2: Run from a fresh base #
 ##################################
-FROM mcr.microsoft.com/playwright:v1.60.0-noble
+FROM mcr.microsoft.com/playwright:v1.61.1-noble
 
 # Install tini for proper signal handling (SIGTERM in k8s)
 RUN apt-get update -qq && \
