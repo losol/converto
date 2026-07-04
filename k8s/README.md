@@ -32,12 +32,12 @@ kubectl create secret generic converto-secrets \
 ### 2. Install the chart
 
 ```bash
-helm install converto apps/convertoapi/k8s/chart/ \
+helm install converto k8s/chart/ \
   --namespace converto \
   --set image.tag=your-image-tag
 ```
 
-Or via an ArgoCD Application pointing to `apps/convertoapi/k8s/chart`.
+Or via an ArgoCD Application pointing to `k8s/chart`.
 
 ### 3. Connect the Eventuras API
 
@@ -76,5 +76,5 @@ Default limits are 1 Gi memory and 1 CPU core. Adjust via values if needed.
 ## Local testing
 
 ```bash
-helm template converto apps/convertoapi/k8s/chart/ --set image.tag=test
+helm template converto k8s/chart/ --set image.tag=test
 ```
