@@ -10,7 +10,7 @@ updates:
       # All non-breaking updates (prod + dev) in one PR
       npm-minor-patch:
         patterns:
-          - "*"
+          - '*'
         update-types:
           - minor
           - patch
@@ -18,7 +18,7 @@ updates:
       # one doesn't block the safe updates from merging
       npm-major:
         patterns:
-          - "*"
+          - '*'
         update-types:
           - major
 
@@ -31,7 +31,7 @@ updates:
       # Everything in one PR, including majors
       github-actions:
         patterns:
-          - "*"
+          - '*'
 
   # Base image in the Dockerfile
   - package-ecosystem: docker
