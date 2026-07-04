@@ -7,18 +7,31 @@ updates:
       interval: weekly
     open-pull-requests-limit: 10
     groups:
-      # Batch low-risk dev tooling into a single PR
-      dev-dependencies:
-        dependency-type: development
+      # All non-breaking updates (prod + dev) in one PR
+      npm-minor-patch:
+        patterns:
+          - "*"
         update-types:
           - minor
           - patch
+      # Batch major bumps together, kept separate so a breaking
+      # one doesn't block the safe updates from merging
+      npm-major:
+        patterns:
+          - "*"
+        update-types:
+          - major
 
   # GitHub Actions used in workflows
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
+    groups:
+      # Everything in one PR, including majors
+      github-actions:
+        patterns:
+          - "*"
 
   # Base image in the Dockerfile
   - package-ecosystem: docker
