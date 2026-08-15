@@ -1,12 +1,13 @@
 // src/swaggerPlugin/index.ts
-import { FastifyInstance } from 'fastify';
-import Swagger from '@fastify/swagger';
-import { swaggerOptions } from './swaggerOptions.js';
-import fastifyApiReference from '@scalar/fastify-api-reference';
+
+import Swagger from "@fastify/swagger";
+import fastifyApiReference from "@scalar/fastify-api-reference";
+import type { FastifyInstance } from "fastify";
+import { swaggerOptions } from "./swaggerOptions.js";
 
 export async function registerOpenapiPlugin(fastify: FastifyInstance) {
-  fastify.register(Swagger, swaggerOptions);
-  await fastify.register(fastifyApiReference, {
-    routePrefix: '/openapi',
-  });
+	fastify.register(Swagger, swaggerOptions);
+	await fastify.register(fastifyApiReference, {
+		routePrefix: "/openapi",
+	});
 }
