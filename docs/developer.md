@@ -103,5 +103,13 @@ Versioning and changelog are managed with
 3. Merging that PR tags `v<version>`, creates a GitHub Release, and triggers the
    Docker workflow to publish `losolio/converto:<version>` + `latest`.
 
+Dependabot PRs don't carry changesets. So that dependency updates still ship,
+the Release workflow also runs every Sunday (05:17 UTC). If changes to `src/`,
+`public/`, `Dockerfile`, `package.json` or `pnpm-lock.yaml` have landed since
+the last `v*` tag and no changeset is pending, `scripts/auto-changeset.sh` adds
+a patch changeset listing those commits, which opens the "Version Packages" PR.
+Merging it is still a manual step. Trigger it any time via **Actions → Release
+→ Run workflow**.
+
 The package is `private` and is never published to npm — Changesets only drives
 the version, changelog, and release tag.

@@ -3,6 +3,10 @@ name: Release
 on:
   push:
     branches: [main]
+  # Weekly: cut a patch release for unreleased dependency updates (see below).
+  schedule:
+    - cron: '17 5 * * 0' # Sundays 05:17 UTC
+  workflow_dispatch:
 
 concurrency:
   group: release-${{ github.ref }}
@@ -31,6 +35,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
+
+      # On the weekly schedule (or a manual run), add a patch changeset if
+      # runtime changes have landed since the last release without one.
+      - name: Add changeset for unreleased dependency updates
+        if: github.event_name != 'push'
+        run: bash scripts/auto-changeset.sh
 
       # When changesets exist on main -> opens/updates the "Version Packages" PR.
       # When none exist (that PR just merged) -> runs the publish command below,

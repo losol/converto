@@ -20,5 +20,8 @@ alongside your change.
 3. Merging that PR tags `v<version>` and creates a GitHub Release, which kicks
    off the Docker workflow to publish `losolio/converto:<version>` + `latest`.
 
+Dependency updates without a changeset are picked up by a weekly (Sunday) run
+that adds a patch changeset automatically — see `docs/developer.md`.
+
 This package is `private` and never published to npm — changesets is used only
 for versioning, the changelog, and the release tag.
